@@ -1,1 +1,1 @@
-# projeto-mvc-api
+# boletim-epidemiologico-java
