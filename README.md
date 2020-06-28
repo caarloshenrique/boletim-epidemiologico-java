@@ -1,5 +1,5 @@
 # boletim-epidemiologico-java
-:space_invader: Um sistema para registro de boletim epidemiológico desenvolvido em Java
+:space_invader: Um sistema para registro de boletim epidemiológico desenvolvido em Java.
 
 ## :rocket: Tecnologias utilizadas  
 
