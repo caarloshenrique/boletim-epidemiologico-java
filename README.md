@@ -1,6 +1,16 @@
 # boletim-epidemiologico-java
 :space_invader: Um sistema para registro de boletim epidemiológico desenvolvido em Java
 
+## :rocket: Tecnologias utilizadas  
+
+O projeto foi feito utilizando as seguintes tecnologias:
+
+- [Java 8](https://www.java.com/pt_BR/download/faq/java8.xml)
+- [Java Swing](https://docs.oracle.com/javase/tutorial/uiswing/)
+- [MySQL 5](https://www.mysql.com/)
+- [JasperReports](https://community.jaspersoft.com/project/jasperreports-library)
+{...}
+
 ## :page_facing_up: Licença 
 Este projeto é desenvolvido sob a licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para saber mais detalhes.
 
