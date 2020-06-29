@@ -4,8 +4,8 @@ public class Paciente {
 
     private int id;
     private String nome;
-    private int cpf;
-    private int telefone;
+    private String cpf;
+    private String telefone;
     private String email;
     private String endereco;
     private String status;
@@ -14,7 +14,7 @@ public class Paciente {
     public Paciente() {
     }
 
-    public Paciente(int id, String nome, int cpf, int telefone, String email, String endereco, String status, boolean quarentena) {
+    public Paciente(int id, String nome, String cpf, String telefone, String email, String endereco, String status, boolean quarentena) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
@@ -41,19 +41,19 @@ public class Paciente {
         this.nome = nome;
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 

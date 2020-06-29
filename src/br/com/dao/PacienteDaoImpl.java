@@ -21,8 +21,8 @@ public class PacienteDaoImpl implements PacienteDao {
         try {
             pstm = conexao.prepareStatement(sqlinsert);
             pstm.setString(1, paciente.getNome());
-            pstm.setInt(2, paciente.getCpf());
-            pstm.setInt(3, paciente.getTelefone());
+            pstm.setString(2, paciente.getCpf());
+            pstm.setString(3, paciente.getTelefone());
             pstm.setString(4, paciente.getEmail());
             pstm.setString(5, paciente.getEndereco());
             pstm.setString(6, paciente.getStatus());
@@ -47,8 +47,8 @@ public class PacienteDaoImpl implements PacienteDao {
         try {
             pstm = conexao.prepareStatement(query);
             pstm.setString(1, paciente.getNome());
-            pstm.setInt(2, paciente.getCpf());
-            pstm.setInt(3, paciente.getTelefone());
+            pstm.setString(2, paciente.getCpf());
+            pstm.setString(3, paciente.getTelefone());
             pstm.setString(4, paciente.getEmail());
             pstm.setString(5, paciente.getEndereco());
             pstm.setString(6, paciente.getStatus());
@@ -92,7 +92,7 @@ public class PacienteDaoImpl implements PacienteDao {
         ResultSet rs = null;
         List<Paciente> lista = new ArrayList<Paciente>();
         conexao = new Conexao().getConnection();
-        String query = "SELECT* FROM tb_paciente";
+        String query = "SELECT * FROM tb_paciente";
         try {
             pstm = conexao.prepareStatement(query);
             rs = pstm.executeQuery();
@@ -101,8 +101,8 @@ public class PacienteDaoImpl implements PacienteDao {
                 Paciente paciente = new Paciente();
                 paciente.setId(rs.getInt("id"));
                 paciente.setNome(rs.getString("nome"));
-                paciente.setCpf(rs.getInt("cpf"));
-                paciente.setTelefone(rs.getInt("telefone"));
+                paciente.setCpf(rs.getString("cpf"));
+                paciente.setTelefone(rs.getString("telefone"));
                 paciente.setEmail(rs.getString("email"));
                 paciente.setEndereco(rs.getString("endereco"));
                 paciente.setStatus(rs.getString("status"));
@@ -121,6 +121,39 @@ public class PacienteDaoImpl implements PacienteDao {
             }
         }
         return lista;
+    }
+
+    @Override
+    public Paciente buscarPaciente(int id) {
+        ResultSet rs = null;
+        conexao = new Conexao().getConnection();
+        Paciente paciente = new Paciente();
+        String query = "SELECT * FROM tb_paciente WHERE id=?";
+        try {
+            pstm = conexao.prepareStatement(query);
+            pstm.setInt(1, id);
+            rs = pstm.executeQuery();
+            rs.first();
+
+            paciente.setId(rs.getInt("id"));
+            paciente.setNome(rs.getString("nome"));
+            paciente.setCpf(rs.getString("cpf"));
+            paciente.setTelefone(rs.getString("telefone"));
+            paciente.setEmail(rs.getString("email"));
+            paciente.setEndereco(rs.getString("endereco"));
+            paciente.setStatus(rs.getString("status"));
+            paciente.setQuarentena(rs.getBoolean("quarentena"));
+        } catch (SQLException find) {
+            System.out.println("Erro: " + find);
+        } finally {
+            try {
+                conexao.close();
+            } catch (SQLException findclose) {
+                System.out.println("Erro: " + findclose);
+            }
+        }
+
+        return paciente;
     }
 
 }

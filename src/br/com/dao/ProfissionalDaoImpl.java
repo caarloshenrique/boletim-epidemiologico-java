@@ -112,6 +112,30 @@ public class ProfissionalDaoImpl implements ProfissionalDao {
     }
 
     @Override
+    public int buscarId(String nome) {
+        ResultSet rs = null;
+        conexao = new Conexao().getConnection();
+        String query = "SELECT* FROM tb_profissional WHERE nome=?";
+        int id = 0;
+        try {
+            pstm = conexao.prepareStatement(query);
+            pstm.setString(1, nome);
+            rs = pstm.executeQuery();
+            rs.first();
+            id = rs.getInt("id");
+        } catch (SQLException findid) {
+            System.out.println("Erro: " + findid);
+        } finally {
+            try {
+                conexao.close();
+            } catch (SQLException findidclose) {
+                System.out.println("Erro: " + findidclose);
+            }
+        }
+        return id;
+    }
+
+    @Override
     public int buscarId(String nome, int matricula, String cargo) {
         ResultSet rs = null;
         conexao = new Conexao().getConnection();

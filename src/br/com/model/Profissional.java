@@ -48,5 +48,5 @@ public class Profissional {
     public void setCargo(String cargo) {
         this.cargo = cargo;
     }
-    
+
 }

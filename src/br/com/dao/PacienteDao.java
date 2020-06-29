@@ -12,4 +12,6 @@ public interface PacienteDao {
     public void excluirPaciente(int id);
 
     public List<Paciente> getPacientes();
+
+    public Paciente buscarPaciente(int id);
 }

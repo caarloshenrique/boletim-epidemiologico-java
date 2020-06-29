@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 public class ProfissionalController {
 
     ProfissionalDao profissionalDao = new ProfissionalDaoImpl();
+    UsuarioController usuarioController = new UsuarioController();
 
     public void salvarProfissional(Profissional profissional) {
         if (profissional != null && !profissional.getNome().equals("")
@@ -51,6 +52,11 @@ public class ProfissionalController {
         return lista;
     }
 
+    public int buscarId(String nome) {
+        int id = profissionalDao.buscarId(nome);
+        return id;
+    }
+
     public int buscarId(String nome, int matricula, String cargo) {
         int id = profissionalDao.buscarId(nome, matricula, cargo);
         return id;
@@ -60,4 +66,36 @@ public class ProfissionalController {
         String nome = profissionalDao.buscarNome(id);
         return nome;
     }
+
+    public void criarProfissionalPadrao() {
+        String NOME = "Admin";
+        int MATRICULA = 1;
+        String CARGO = "Administrador";
+
+        List<Profissional> profissionais = new ArrayList<Profissional>();
+        profissionais = getProfissionais();
+        if (profissionais.isEmpty()) {
+            Profissional novoProfissional = new Profissional();
+            novoProfissional.setNome(NOME);
+            novoProfissional.setMatricula(MATRICULA);
+            novoProfissional.setCargo(CARGO);
+            salvarProfissional(novoProfissional);
+
+            int id = buscarId(NOME, MATRICULA, CARGO);
+            usuarioController.criarUsuarioPadrao(id);
+        }
+    }
+
+    public int buscarUltimoId() {
+        List<Profissional> profissionais = new ArrayList<Profissional>();
+        profissionais = getProfissionais();
+
+        if (profissionais.isEmpty()) {
+            return 0;
+        } else {
+            int id = profissionais.get(profissionais.size() - 1).getId();
+            return id;
+        }
+    }
+
 }

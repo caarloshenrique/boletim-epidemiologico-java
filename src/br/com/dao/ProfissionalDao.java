@@ -12,7 +12,9 @@ public interface ProfissionalDao {
     public void excluirProfissional(int id);
 
     public List<Profissional> getProfissionais();
-    
+
+    public int buscarId(String nome);
+
     public int buscarId(String nome, int matricula, String cargo);
 
     public String buscarNome(int id);

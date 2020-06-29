@@ -80,15 +80,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         menuRelatorios.setBackground(new java.awt.Color(255, 255, 255));
         menuRelatorios.setText("Relatórios");
-        menuRelatorios.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuRelatoriosActionPerformed(evt);
-            }
-        });
 
         menuItemBoletim.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.ALT_MASK));
         menuItemBoletim.setBackground(new java.awt.Color(255, 255, 255));
         menuItemBoletim.setText("Boletim Epidemiológico");
+        menuItemBoletim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemBoletimActionPerformed(evt);
+            }
+        });
         menuRelatorios.add(menuItemBoletim);
 
         menuPrincipal.add(menuRelatorios);
@@ -141,9 +141,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
         paciente.setPosicao();
     }//GEN-LAST:event_menuItemPacienteActionPerformed
 
-    private void menuRelatoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRelatoriosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuRelatoriosActionPerformed
+    private void menuItemBoletimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemBoletimActionPerformed
+        FrmListBoletim boletim = new FrmListBoletim();
+        Desktop.add(boletim);
+        boletim.setVisible(true);
+        boletim.setPosicao();
+    }//GEN-LAST:event_menuItemBoletimActionPerformed
 
     private void menuSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuSairMouseClicked
         new FrmLogin().show();

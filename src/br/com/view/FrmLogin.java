@@ -1,9 +1,14 @@
 package br.com.view;
 
+import br.com.controller.UsuarioController;
+import javax.swing.JOptionPane;
+
 public class FrmLogin extends javax.swing.JFrame {
 
     public FrmLogin() {
         initComponents();
+        txtEmail.setText("admin@covid19.gov.br");
+        txtSenha.setText("admin");
         this.getRootPane().setDefaultButton(btnEntrar);
     }
 
@@ -25,18 +30,31 @@ public class FrmLogin extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
 
-        lblTitulo.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        painelLogin.setBackground(new java.awt.Color(6, 52, 75));
+
+        lblTitulo.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
         lblTitulo.setText("Autenticação");
 
-        lblTituloSistema.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        lblTituloSistema.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        lblTituloSistema.setForeground(new java.awt.Color(255, 255, 255));
         lblTituloSistema.setText("Boletim Epidemiológico - Secretaria Municipal de Saúde");
 
-        lblEmail.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
+        lblEmail.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        lblEmail.setForeground(new java.awt.Color(255, 255, 255));
         lblEmail.setText("E-mail:");
 
-        lblSenha.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
+        lblSenha.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        lblSenha.setForeground(new java.awt.Color(255, 255, 255));
         lblSenha.setText("Senha:");
 
+        txtEmail.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+
+        txtSenha.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+
+        btnEntrar.setBackground(new java.awt.Color(255, 255, 255));
+        btnEntrar.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        btnEntrar.setForeground(new java.awt.Color(6, 52, 75));
         btnEntrar.setText("Entrar");
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -44,6 +62,9 @@ public class FrmLogin extends javax.swing.JFrame {
             }
         });
 
+        btnLimpar.setBackground(new java.awt.Color(255, 255, 255));
+        btnLimpar.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        btnLimpar.setForeground(new java.awt.Color(6, 52, 75));
         btnLimpar.setText("Limpar");
         btnLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -51,6 +72,9 @@ public class FrmLogin extends javax.swing.JFrame {
             }
         });
 
+        btnCancelar.setBackground(new java.awt.Color(255, 255, 255));
+        btnCancelar.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(6, 52, 75));
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -63,20 +87,23 @@ public class FrmLogin extends javax.swing.JFrame {
         painelLoginLayout.setHorizontalGroup(
             painelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelLoginLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addGroup(painelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblSenha)
-                    .addComponent(lblEmail)
-                    .addComponent(lblTituloSistema, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(painelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(painelLoginLayout.createSequentialGroup()
-                        .addGap(116, 116, 116)
+                        .addGap(170, 170, 170)
                         .addComponent(lblTitulo))
-                    .addComponent(txtEmail)
-                    .addComponent(txtSenha)
-                    .addComponent(btnEntrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(45, Short.MAX_VALUE))
+                    .addGroup(painelLoginLayout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(painelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(painelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblSenha)
+                                .addComponent(lblEmail)
+                                .addComponent(txtEmail)
+                                .addComponent(txtSenha)
+                                .addComponent(btnEntrar, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE)
+                                .addComponent(btnLimpar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(lblTituloSistema))))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         painelLoginLayout.setVerticalGroup(
             painelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -85,7 +112,7 @@ public class FrmLogin extends javax.swing.JFrame {
                 .addComponent(lblTituloSistema)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblTitulo)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblEmail)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -99,7 +126,7 @@ public class FrmLogin extends javax.swing.JFrame {
                 .addComponent(btnLimpar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCancelar)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -127,8 +154,16 @@ public class FrmLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        new FrmPrincipal().show();
-        this.dispose();
+        UsuarioController usuarioController = new UsuarioController();
+        boolean existeCredenciais;
+        existeCredenciais = usuarioController.login(txtEmail.getText(), String.valueOf(txtSenha.getPassword()));
+
+        if (existeCredenciais) {
+            new FrmPrincipal().show();
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Usuário ou senha incorretos", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     /**
