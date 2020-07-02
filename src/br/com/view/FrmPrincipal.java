@@ -1,6 +1,10 @@
 package br.com.view;
 
+import br.com.controller.PacienteController;
+
 public class FrmPrincipal extends javax.swing.JFrame {
+    
+    PacienteController pacienteController = new PacienteController();
 
     public FrmPrincipal() {
         initComponents();
@@ -20,6 +24,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         menuItemPaciente = new javax.swing.JMenuItem();
         menuRelatorios = new javax.swing.JMenu();
         menuItemBoletim = new javax.swing.JMenuItem();
+        menuItemPacientesConfirmados = new javax.swing.JMenuItem();
         menuSair = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -91,6 +96,16 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         menuRelatorios.add(menuItemBoletim);
 
+        menuItemPacientesConfirmados.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_MASK));
+        menuItemPacientesConfirmados.setBackground(new java.awt.Color(255, 255, 255));
+        menuItemPacientesConfirmados.setText("Pacientes Confirmados");
+        menuItemPacientesConfirmados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemPacientesConfirmadosActionPerformed(evt);
+            }
+        });
+        menuRelatorios.add(menuItemPacientesConfirmados);
+
         menuPrincipal.add(menuRelatorios);
 
         menuSair.setText("Sair");
@@ -148,6 +163,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
         boletim.setPosicao();
     }//GEN-LAST:event_menuItemBoletimActionPerformed
 
+    private void menuItemPacientesConfirmadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemPacientesConfirmadosActionPerformed
+        pacienteController.gerarRelatorioPacientesConfirmados();
+    }//GEN-LAST:event_menuItemPacientesConfirmadosActionPerformed
+
     private void menuSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuSairMouseClicked
         new FrmLogin().show();
         this.dispose();
@@ -194,6 +213,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu menuCadastro;
     private javax.swing.JMenuItem menuItemBoletim;
     private javax.swing.JMenuItem menuItemPaciente;
+    private javax.swing.JMenuItem menuItemPacientesConfirmados;
     private javax.swing.JMenuItem menuItemProfissional;
     private javax.swing.JMenuItem menuItemUsuario;
     private javax.swing.JMenuBar menuPrincipal;

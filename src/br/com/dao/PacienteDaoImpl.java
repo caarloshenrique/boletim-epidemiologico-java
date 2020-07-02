@@ -7,7 +7,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.view.JasperViewer;
 
 public class PacienteDaoImpl implements PacienteDao {
 
@@ -154,6 +162,59 @@ public class PacienteDaoImpl implements PacienteDao {
         }
 
         return paciente;
+    }
+
+    @Override
+    public List<Paciente> getPacientesConfirmados() {
+        ResultSet rs = null;
+        List<Paciente> lista = new ArrayList<Paciente>();
+        conexao = new Conexao().getConnection();
+        String query = "SELECT * FROM tb_paciente WHERE status='Confirmado'";
+        try {
+            pstm = conexao.prepareStatement(query);
+            rs = pstm.executeQuery();
+            rs.first();
+            do {
+                Paciente paciente = new Paciente();
+                paciente.setId(rs.getInt("id"));
+                paciente.setNome(rs.getString("nome"));
+                paciente.setCpf(rs.getString("cpf"));
+                paciente.setTelefone(rs.getString("telefone"));
+                paciente.setEmail(rs.getString("email"));
+                paciente.setEndereco(rs.getString("endereco"));
+                paciente.setStatus(rs.getString("status"));
+                paciente.setQuarentena(rs.getBoolean("quarentena"));
+                lista.add(paciente);
+
+            } while (rs.next());
+
+            
+        } catch (SQLException errolistar) {
+            System.out.println("Erro: " + errolistar);
+        } finally {
+            try {
+                conexao.close();
+            } catch (SQLException errofechar) {
+                System.out.println("Erro: " + errofechar);
+            }
+        }
+        return lista;
+    }
+    
+    @Override
+    public void gerarRelatorioPacientesConfirmados(List<Paciente> pacientes, String status, String CAMINHO_RELATORIO) throws JRException {       
+        HashMap filtro = new HashMap();
+        filtro.put("paramStatus", status);
+        JRBeanCollectionDataSource colecao = new JRBeanCollectionDataSource(pacientes, false);
+
+        JasperPrint imprimir = null;
+        try {
+            imprimir = JasperFillManager.fillReport(CAMINHO_RELATORIO, filtro, colecao);
+        } catch (JRException ex) {
+            Logger.getLogger(PacienteDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        JasperViewer visualizar = new JasperViewer(imprimir, false);
+        visualizar.setVisible(true);
     }
 
 }

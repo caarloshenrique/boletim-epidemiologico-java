@@ -6,6 +6,7 @@ import br.com.model.Paciente;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
 
 public class PacienteController {
 
@@ -75,6 +76,14 @@ public class PacienteController {
             int id = pacientes.get(pacientes.size() - 1).getId();
             return id;
         }
+    }
+    
+    public void gerarRelatorioPacientesConfirmados() throws JRException {
+        String status = "Confirmado";
+        String CAMINHO_RELATORIO = "C:\\Users\\Carlos\\Documents\\NetBeansProjects\\BoletimEpidemiologico\\src\\br\\com\\report\\ReportPacientesConfirmados.jasper";
+        List<Paciente> lista = new ArrayList<Paciente>();
+        lista = pacienteDao.getPacientesConfirmados();
+        pacienteDao.gerarRelatorioPacientesConfirmados(lista, status, CAMINHO_RELATORIO);
     }
 
 }
