@@ -18,6 +18,53 @@ O projeto foi feito utilizando as seguintes tecnologias:
 - [MySQL 5](https://www.mysql.com/)
 - [iReport 5.6](https://community.jaspersoft.com/project/ireport-designer)
 
+## :floppy_disk: Script para criação do banco de dados
+
+```
+CREATE DATABASE db_boletim;
+
+USE db_boletim;
+
+CREATE TABLE tb_profissional (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  nome varchar(250) NOT NULL,
+  matricula int(11) NOT NULL,
+  cargo varchar(250) NOT NULL,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE tb_usuario (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  email varchar(250) NOT NULL,
+  senha varchar(50) NOT NULL,
+  profissional_id int(11) NOT NULL,
+  FOREIGN KEY (profissional_id) REFERENCES tb_profissional(id),
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE tb_paciente (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  nome varchar(250) NOT NULL,
+  cpf varchar(14) NOT NULL,
+  telefone varchar(15) NOT NULL,
+  email varchar(250) NOT NULL,
+  endereco varchar(250) NOT NULL,
+  status varchar(50) NOT NULL,
+  quarentena tinyint(1) NOT NULL,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE tb_boletim (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  suspeitos int(11) NOT NULL,
+  confirmados int(11) NOT NULL,
+  descartados int(11) NOT NULL,
+  obitos int(11) NOT NULL,
+  recuperados int(11) NOT NULL,
+  PRIMARY KEY (id)
+);
+```
+
 ## :fire: Instalação e execução
 Execute a classe `Executavel` localizada em `src/br/com/executable/Executavel.java`
 
