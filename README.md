@@ -66,7 +66,7 @@ CREATE TABLE tb_boletim (
 ```
 
 ## :fire: Instalação e execução
-Execute a classe `Executavel` localizada em `src/br/com/executable/Executavel.java`
+Execute a classe [Executavel](/src/br/com/executable/Executavel.java) localizada em `src/br/com/executable/Executavel.java`
 
 ## :page_facing_up: Licença 
 Este projeto é desenvolvido sob a licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para saber mais detalhes.
